@@ -1,12 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Publisher } from '@modules/heroes/models';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
+import { Hero, Publisher } from '@modules/heroes/models';
+import { HeroesService } from '@modules/heroes/services';
 
 @Component({
   selector: 'app-new-page',
   templateUrl: './new-page.component.html'
 })
-export class NewPageComponent {
+export class NewPageComponent implements OnInit{
   @Input()
   id?: string;
 
@@ -22,13 +26,50 @@ export class NewPageComponent {
 
   public publishers = [
     {id: 'DC Comics', desc: 'DC - Comics'},
-    {id: 'Marvel Comicas', desc: 'Marvel - Comics'}
+    {id: 'Marvel Comics', desc: 'Marvel - Comics'}
   ];
 
+  private heroesService = inject(HeroesService);
+  private snakcbar = inject(MatSnackBar);
+  private router = inject(Router);
+
+  get currentHero(): Hero {
+    const hero = this.heroForm.value as Hero;
+    return hero;
+  }
+
+  ngOnInit(): void {
+
+    if ( !this.id ) return;
+
+    this.heroesService.getHeroById(this.id).subscribe((hero) => {
+      this.heroForm.reset(hero);
+      return;
+    })
+
+  }
+
   onSubmit(): void {
-    console.log({
-      formIsValid: this.heroForm.valid,
-      value: this.heroForm.value
+    if ( this.heroForm.invalid ) return;
+
+    if ( this.currentHero.id ) {
+      this.heroesService.updateHero(this.currentHero).subscribe((hero) => {
+        this.router.navigate(['/heroes/list']);
+        this.showSnackbar(`${hero.superhero} modificado con exito!`)
+      });
+
+      return;
+    }
+
+    this.heroesService.addHero(this.currentHero).subscribe((hero) => {
+      this.router.navigate(['/heroes/edit', hero.id]);
+      this.showSnackbar(`${hero.superhero} creado con exito!`)
+    })
+  }
+
+  showSnackbar(message: string): void{
+    this.snakcbar.open(message, 'done', {
+      duration: 2500,
     })
   }
 }

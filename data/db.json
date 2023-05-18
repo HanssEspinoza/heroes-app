@@ -85,7 +85,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Dinah Drake",
       "first_appearance": "Flash Comics #86",
-      "characters": "Dinah Drake, Dinah Lance"
+      "characters": "Dinah Drake, Dinah Lance",
+      "alt_img": "https://www.sideshow.com/cdn-cgi/image/quality=90,f=auto/https://www.sideshow.com/storage/product-images/501651FAL/black-canary_dc-comics_silo.png"
     },
     {
       "id": "marvel-spider",
@@ -93,7 +94,8 @@
       "publisher": "Marvel Comics",
       "alter_ego": "Peter Parker",
       "first_appearance": "Amazing Fantasy #15",
-      "characters": "Peter Parker"
+      "characters": "Peter Parker",
+      "alt_img": "https://cdn.marvel.com/u/prod/marvel/i/mg/f/50/61d4c3fbc6ee4/clean.jpg"
     },
     {
       "id": "marvel-captain",
@@ -157,7 +159,8 @@
       "publisher": "Marvel Comics",
       "alter_ego": "Scott Summers",
       "first_appearance": "X-Men #1",
-      "characters": "Scott Summers"
+      "characters": "Scott Summers",
+      "alt_img": "https://i.pinimg.com/564x/3b/47/68/3b47684f8ea5185b1130e71b75fa88fb.jpg"
     },
     {
       "id": "marvel-silver",
@@ -166,6 +169,24 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "id": "LvcjxKh",
+      "superhero": "Viuda Negra",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Natalia Alianovna \"Natasha\" Romanova",
+      "first_appearance": "Tales of Suspense #52",
+      "characters": "\"Natasha\" Romanova",
+      "alt_img": "https://cdn.marvel.com/u/prod/marvel/i/mg/f/50/5e8b34af1edb6/clean.jpg"
+    },
+    {
+      "id": "yavOir7",
+      "superhero": "Batgirl",
+      "publisher": "DC Comics",
+      "alter_ego": "Barbara Gordon",
+      "first_appearance": "Batman Nº 139",
+      "characters": "Barbara Gordon, Stephanie Brown, Cassandra Cain",
+      "alt_img": "https://i0.wp.com/batman-news.com/wp-content/uploads/2011/10/Batgirl1.jpeg?fit=640%2C960&quality=80&strip=info&ssl=1"
     }
   ]
 }

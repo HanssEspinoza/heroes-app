@@ -64,7 +64,8 @@
           <button
             mat-flat-button
             color="warn"
-            *ngIf="id">
+            *ngIf="id"
+            (click)="onDeleteHero()">
             Borrar
           </button>
           <span class="spacer"></span>

@@ -1,7 +1,9 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from '@modules/heroes/components';
 
 import { Hero, Publisher } from '@modules/heroes/models';
 import { HeroesService } from '@modules/heroes/services';
@@ -32,6 +34,7 @@ export class NewPageComponent implements OnInit{
   private heroesService = inject(HeroesService);
   private snakcbar = inject(MatSnackBar);
   private router = inject(Router);
+  private dialog = inject(MatDialog);
 
   get currentHero(): Hero {
     const hero = this.heroForm.value as Hero;
@@ -65,6 +68,26 @@ export class NewPageComponent implements OnInit{
       this.router.navigate(['/heroes/edit', hero.id]);
       this.showSnackbar(`${hero.superhero} creado con exito!`)
     })
+  }
+
+  onDeleteHero():void {
+    if (!this.currentHero.id) throw Error ('Hero id is required');
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: this.heroForm.value,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) return;
+
+      this.heroesService.deleteHero(this.currentHero.id).subscribe((wasDeleted) => {
+        if (wasDeleted)
+          this.router.navigate(['/heroes/list']);
+      });
+    });
+
+
+
   }
 
   showSnackbar(message: string): void{
